@@ -25,7 +25,7 @@ Python project managed with `uv`; target a one-command run (`uv run ...`).
 
 ```bash
 uv sync
-uv run nem-pulse                              # yesterday, NEM time
+uv run nem-pulse                              # newest archived day (NEM today minus 2)
 uv run nem-pulse --date 2026-10-10 --days 10  # backfill
 uv run pytest -q                              # 11 tests
 ```
@@ -99,3 +99,5 @@ _Updated for 2026-10-10 (NEM time)._
 - **2026-10-10** TAS1: lowest price (-157.8, previous best -62.99)
 - **2026-10-09** SA1: highest wind share (88.0%, previous best 0.8432)
 <!-- PULSE:END -->
+
+> The AEMO archive trails real time by about two days, so this dataset is two days behind the grid. (Found when the first scheduled run on GitHub failed with a 404 for "yesterday".)

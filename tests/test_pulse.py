@@ -103,3 +103,12 @@ def test_missing_demand_fails_loudly():
     prices.loc[0, "demand"] = float("nan")
     with pytest.raises(summary.SourceDataError):
         summary.summarise_day(DAY, prices, make_scada(), GENS)
+
+
+def test_default_day_is_two_days_back_because_the_archive_lags():
+    from datetime import datetime, timedelta, timezone
+
+    from nem_pulse.cli import latest_archived_day
+
+    now = datetime(2026, 10, 12, 20, 30, tzinfo=timezone.utc)  # 06:30 AEST on the 13th
+    assert latest_archived_day(now) == date(2026, 10, 11)  # NEM date is the 13th; archive trails by two days

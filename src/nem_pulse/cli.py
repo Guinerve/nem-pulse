@@ -1,4 +1,4 @@
-"""nem-pulse update [--date YYYY-MM-DD] [--days N]: pull, summarise, store, detect records, redraw charts."""
+"""nem-pulse [--date YYYY-MM-DD] [--days N]: pull, summarise, store, detect records, redraw charts."""
 
 from __future__ import annotations
 
@@ -20,8 +20,10 @@ from . import charts, records, store, summary
 NEM_TZ = timezone(timedelta(hours=10))
 
 
-def yesterday_nem() -> date:
-    return datetime.now(NEM_TZ).date() - timedelta(days=1)
+def latest_archived_day(now: datetime | None = None) -> date:
+    """NEMWeb's daily archive trails real time by about two days (observed: on the evening of 12 Oct the
+    newest file was 10 Oct), so the newest day we can fetch is NEM-today minus two."""
+    return (now or datetime.now(NEM_TZ)).astimezone(NEM_TZ).date() - timedelta(days=2)
 
 
 def update_day(day: date, root: Path, generators: pd.DataFrame) -> bool:
@@ -59,12 +61,12 @@ def render_readme(root: Path, history: pd.DataFrame) -> None:
 def main(argv: list[str] | None = None) -> int:
     logging.getLogger("httpx").setLevel(logging.WARNING)
     p = argparse.ArgumentParser(prog="nem-pulse")
-    p.add_argument("--date", type=date.fromisoformat, default=None, help="Last day to fetch (default: yesterday, NEM time)")
+    p.add_argument("--date", type=date.fromisoformat, default=None, help="Last day to fetch (default: NEM today minus 2; the archive lags)")
     p.add_argument("--days", type=int, default=1, help="How many days to (re)fetch, ending at --date")
     p.add_argument("--data", type=Path, default=Path("data"))
     args = p.parse_args(argv)
 
-    end = args.date or yesterday_nem()
+    end = args.date or latest_archived_day()
     changed = False
     try:
         generators = NemClient().generators()
