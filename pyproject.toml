@@ -1,0 +1,29 @@
+[project]
+name = "nem-pulse"
+version = "0.1.0"
+description = "A self-updating dataset of daily NEM summaries (prices, demand, renewable share, emissions intensity, records), maintained by a scheduled GitHub Action."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["nem-mcp", "pandas>=2.2", "matplotlib>=3.8"]
+
+[project.scripts]
+nem-pulse = "nem_pulse.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[tool.uv.sources]
+nem-mcp = { git = "https://github.com/Guinerve/nem-mcp", branch = "main" }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nem_pulse"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100

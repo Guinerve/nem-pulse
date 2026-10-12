@@ -1,0 +1,5 @@
+50 region-days compared (2026-10-01 to 2026-10-10)
+avg price     max |diff| = 0.0049 $/MWh   (mean |diff| 0.0026)
+avg demand    max |diff| = 0.048 MW   (mean |diff| 0.0265)
+max price     max |diff| = 0.0000 $/MWh
+intervals per day (ours/aemo) all 288: True

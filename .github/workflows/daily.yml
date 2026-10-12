@@ -1,0 +1,30 @@
+name: Daily NEM summary
+on:
+  schedule:
+    - cron: "30 20 * * *"   # 06:30 AEST: yesterday's NEM day is complete and archived
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days to (re)fetch"
+        default: "1"
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    env:
+      NEM_MCP_TOKEN: ${{ secrets.NEM_MCP_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Allow fetching the private nem-mcp dependency (not needed once it is public)
+        if: env.NEM_MCP_TOKEN != ''
+        run: git config --global url."https://x-access-token:${NEM_MCP_TOKEN}@github.com/".insteadOf "https://github.com/"
+      - name: Fetch, summarise, redraw charts
+        run: uv run nem-pulse --days "${{ github.event.inputs.days || 1 }}"   # exits non-zero on missing or malformed source data
+      - name: Commit if anything changed
+        run: |
+          git config user.name "nem-pulse[bot]"
+          git config user.email "actions@users.noreply.github.com"
+          git add data assets README.md
+          if git diff --cached --quiet; then echo "nothing to commit"; else git commit -m "data: $(date -u +%F)" && git push; fi

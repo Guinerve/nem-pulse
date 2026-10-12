@@ -1,0 +1,105 @@
+from datetime import date
+
+import pandas as pd
+import pytest
+
+from nem_pulse import records, store, summary
+
+REGIONS = ["NSW1", "QLD1", "SA1", "TAS1", "VIC1"]
+DAY = date(2026, 9, 28)
+
+
+def make_prices(n=288, price=100.0):
+    t = pd.date_range("2026-09-28 00:05", periods=n, freq="5min")
+    rows = [(ts, r, price + (i % 4), 5000.0 + 10 * i) for r in REGIONS for i, ts in enumerate(t)]
+    return pd.DataFrame(rows, columns=["interval_end", "region", "rrp", "demand"])
+
+
+def make_scada(n=288):
+    t = pd.date_range("2026-09-28 00:05", periods=n, freq="5min")
+    rows = [(ts, d, mw) for ts in t for d, mw in [("COAL", 100.0), ("WIND", 100.0), ("GAS", 0.0)]]
+    return pd.DataFrame(rows, columns=["interval_end", "duid", "mw"])
+
+
+GENS = pd.DataFrame({
+    "duid": ["COAL", "WIND", "GAS"], "region": ["NSW1"] * 3,
+    "ef_t_per_mwh": [0.9, 0.0, 0.5], "fuel": ["Black coal", "Wind", "Gas"],
+})
+
+
+def test_summary_has_one_row_per_region_and_nem():
+    df = summary.summarise_day(DAY, make_prices(), make_scada(), GENS)
+    assert list(df["region"]) == [*REGIONS, "NEM"]
+    nsw = df[df["region"] == "NSW1"].iloc[0]
+    assert nsw["intervals"] == 288
+    assert nsw["renewable_share"] == pytest.approx(0.5) and nsw["coal_share"] == pytest.approx(0.5)
+    assert nsw["intensity_g_per_kwh"] == pytest.approx(450.0)  # (0.9*100 + 0) / 200 t/MWh
+    assert nsw["generation_mwh"] == pytest.approx(200 * 288 / 12, abs=1)
+
+
+def test_negative_intervals_counted():
+    p = make_prices()
+    p.loc[(p["region"] == "SA1") & (p.index % 7 == 0), "rrp"] = -50.0
+    sa = summary.summarise_day(DAY, p, make_scada(), GENS).query("region == 'SA1'").iloc[0]
+    assert sa["negative_intervals"] > 0 and sa["min_price"] == -50.0
+
+
+@pytest.mark.parametrize("bad", ["prices_short", "scada_short", "empty", "nan_price"])
+def test_bad_source_data_fails_loudly(bad):
+    prices, scada = make_prices(), make_scada()
+    if bad == "prices_short":
+        prices = make_prices(n=200)
+    if bad == "scada_short":
+        scada = make_scada(n=100)
+    if bad == "empty":
+        scada = scada.iloc[0:0]
+    if bad == "nan_price":
+        prices.loc[0, "rrp"] = float("nan")
+    with pytest.raises(summary.SourceDataError):
+        summary.summarise_day(DAY, prices, scada, GENS)
+
+
+def test_write_day_only_reports_change_when_content_differs(tmp_path):
+    df = summary.summarise_day(DAY, make_prices(), make_scada(), GENS)
+    assert store.write_day(tmp_path, DAY, df) is True
+    assert store.write_day(tmp_path, DAY, df) is False
+    assert (tmp_path / "2026" / "09" / "28.csv").exists()
+    assert store.write_day(tmp_path, DAY, df.assign(avg_price=1.0)) is True
+
+
+def test_latest_keeps_a_rolling_window(tmp_path):
+    frames = []
+    for i in range(40):
+        d = date(2026, 8, 1).toordinal() + i
+        df = summary.summarise_day(date.fromordinal(d), make_prices(), make_scada(), GENS)
+        store.write_day(tmp_path, date.fromordinal(d), df)
+        frames.append(df)
+    hist = store.read_all(tmp_path)
+    store.write_latest(tmp_path, hist)
+    latest = pd.read_csv(tmp_path / "latest.csv")
+    assert latest["date"].nunique() == 30 and latest["date"].max() == hist["date"].max()
+
+
+def history(values):
+    return pd.DataFrame({"date": [f"2026-09-{i + 1:02d}" for i in range(len(values))], "region": "SA1",
+                         **{m: 0.0 for m in records.RECORD_METRICS}, "renewable_share": values,
+                         "intensity_g_per_kwh": [50.0] * len(values)})
+
+
+def test_records_detected_against_history():
+    h = history([0.5] * 10 + [0.9])
+    recs = records.find_records(h, "2026-09-11")
+    assert [r["metric"] for r in recs] == ["renewable_share"]
+    assert recs[0]["previous"] == 0.5 and recs[0]["value"] == 0.9
+
+
+def test_no_records_without_enough_history_or_without_beating():
+    assert records.find_records(history([0.5, 0.9]), "2026-09-02") == []
+    assert records.find_records(history([0.9] * 10 + [0.9]), "2026-09-11") == []
+
+
+def test_missing_demand_fails_loudly():
+    prices = make_prices()
+    prices.loc[0, "demand"] = float("nan")
+    with pytest.raises(summary.SourceDataError):
+        summary.summarise_day(DAY, prices, make_scada(), GENS)

@@ -1,0 +1,36 @@
+date,region,metric,label,value,previous,kind
+2026-10-08,NSW1,solar_share,Highest solar share,0.2053,0.2032,max
+2026-10-08,SA1,renewable_share,Highest renewable share,0.8589,0.81,max
+2026-10-08,SA1,wind_share,Highest wind share,0.8432,0.7898,max
+2026-10-08,SA1,intensity_g_per_kwh,Lowest emissions intensity,40.1,65.0,min
+2026-10-08,SA1,min_price,Lowest price,-294.4,-101.02,min
+2026-10-08,SA1,negative_intervals,Most negative-price intervals,149.0,124.0,max
+2026-10-08,TAS1,min_price,Lowest price,-62.99,-46.74,min
+2026-10-08,TAS1,negative_intervals,Most negative-price intervals,120.0,99.0,max
+2026-10-08,VIC1,min_price,Lowest price,-60.0,-44.84,min
+2026-10-08,VIC1,negative_intervals,Most negative-price intervals,134.0,112.0,max
+2026-10-09,NEM,renewable_share,Highest renewable share,0.4313,0.4308,max
+2026-10-09,NEM,intensity_g_per_kwh,Lowest emissions intensity,510.7,522.3,min
+2026-10-09,NEM,max_price,Highest price,594.28,229.18,max
+2026-10-09,NEM,min_price,Lowest price,-6.84,-4.48,min
+2026-10-09,NEM,negative_intervals,Most negative-price intervals,13.0,12.0,max
+2026-10-09,NSW1,max_price,Highest price,992.32,299.99,max
+2026-10-09,QLD1,max_price,Highest price,860.05,269.59,max
+2026-10-09,SA1,renewable_share,Highest renewable share,0.8899,0.8589,max
+2026-10-09,SA1,wind_share,Highest wind share,0.8797,0.8432,max
+2026-10-09,SA1,intensity_g_per_kwh,Lowest emissions intensity,19.7,40.1,min
+2026-10-09,SA1,max_demand_mw,Highest daily peak demand,1627.3,1614.5,max
+2026-10-09,SA1,max_price,Highest price,3210.98,390.2,max
+2026-10-09,SA1,negative_intervals,Most negative-price intervals,158.0,149.0,max
+2026-10-09,TAS1,wind_share,Highest wind share,0.4844,0.4838,max
+2026-10-09,TAS1,negative_intervals,Most negative-price intervals,166.0,120.0,max
+2026-10-09,VIC1,negative_intervals,Most negative-price intervals,197.0,134.0,max
+2026-10-10,NEM,max_price,Highest price,8854.85,594.28,max
+2026-10-10,NEM,min_price,Lowest price,-9.51,-6.84,min
+2026-10-10,NSW1,renewable_share,Highest renewable share,0.4343,0.4031,max
+2026-10-10,NSW1,wind_share,Highest wind share,0.1862,0.1456,max
+2026-10-10,NSW1,intensity_g_per_kwh,Lowest emissions intensity,465.1,488.4,min
+2026-10-10,NSW1,max_price,Highest price,23200.0,992.32,max
+2026-10-10,TAS1,wind_share,Highest wind share,0.5021,0.4844,max
+2026-10-10,TAS1,min_price,Lowest price,-157.83,-62.99,min
+2026-10-10,VIC1,min_price,Lowest price,-148.42,-60.0,min
