@@ -30,7 +30,7 @@ uv run nem-pulse --date 2026-10-10 --days 10  # backfill
 uv run pytest -q                              # 11 tests
 ```
 
-Depends on `nem-mcp` as a git dependency on `github.com/Guinerve/nem-mcp`. While that repo is private, the scheduled workflow needs a `NEM_MCP_TOKEN` secret (a token with read access to it); once it is public no secret is needed.
+Depends on `nem-mcp` as a git dependency on `github.com/Guinerve/nem-mcp`. It is public, so the workflow needs no secret.
 
 ## How I know it's right
 
