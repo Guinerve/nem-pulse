@@ -22,22 +22,22 @@ _Updated for 2026-10-11 (NEM time)._
 | NSW1 | $134/MWh | 39% | 504 g/kWh | 34 |
 | QLD1 | $109/MWh | 27% | 620 g/kWh | 96 |
 | VIC1 | $3/MWh | 33% | 772 g/kWh | 162 |
-| SA1 | $-28/MWh | 75% | 104 g/kWh | 164 |
+| SA1 | -$28/MWh | 75% | 104 g/kWh | 164 |
 | TAS1 | $6/MWh | 100% | 0 g/kWh | 140 |
 | NEM | $82/MWh | 38% | 573 g/kWh | 82 |
 
 ### Recent records
 
-- **2026-10-11** VIC1: lowest price (-365.2, previous best -148.4)
-- **2026-10-11** SA1: most negative-price intervals (164.0, previous best 158)
-- **2026-10-11** SA1: lowest price (-415.0, previous best -294.4)
-- **2026-10-11** QLD1: highest solar share (16.3%, previous best 0.1592)
-- **2026-10-11** NSW1: most negative-price intervals (34.0, previous best 2)
-- **2026-10-11** NSW1: lowest price (-9.6, previous best -5.59)
-- **2026-10-11** NSW1: highest solar share (23.4%, previous best 0.2053)
-- **2026-10-11** NEM: most negative-price intervals (82.0, previous best 13)
-- **2026-10-11** NEM: lowest price (-71.6, previous best -9.51)
-- **2026-10-10** NSW1: lowest emissions intensity (465.1, previous best 488.4)
+- **2026-10-11** NEM: lowest price (-71.6 $/MWh, previous best -9.5 $/MWh)
+- **2026-10-11** NEM: most intervals with a negative price (82 intervals, previous best 13 intervals)
+- **2026-10-11** NSW1: lowest price (-9.6 $/MWh, previous best -5.6 $/MWh)
+- **2026-10-11** NSW1: most intervals with a negative price (34 intervals, previous best 2 intervals)
+- **2026-10-11** NSW1: highest solar share (23.4%, previous best 20.5%)
+- **2026-10-11** QLD1: highest solar share (16.3%, previous best 15.9%)
+- **2026-10-11** SA1: lowest price (-415.0 $/MWh, previous best -294.4 $/MWh)
+- **2026-10-11** SA1: most intervals with a negative price (164 intervals, previous best 158 intervals)
+- **2026-10-11** VIC1: lowest price (-365.2 $/MWh, previous best -148.4 $/MWh)
+- **2026-10-10** NEM: highest price (8,854.9 $/MWh, previous best 594.3 $/MWh)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.

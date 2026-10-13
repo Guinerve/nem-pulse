@@ -12,7 +12,7 @@ RECORD_METRICS = {
     "max_demand_mw": ("max", "Highest daily peak demand"),
     "max_price": ("max", "Highest price"),
     "min_price": ("min", "Lowest price"),
-    "negative_intervals": ("max", "Most negative-price intervals"),
+    "negative_intervals": ("max", "Most intervals with a negative price"),
 }
 
 
