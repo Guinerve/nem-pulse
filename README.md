@@ -15,29 +15,29 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-10-11 (NEM time)._
+_Updated for 2026-10-12 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $134/MWh | 39% | 504 g/kWh | 34 |
-| QLD1 | $109/MWh | 27% | 620 g/kWh | 96 |
-| VIC1 | $3/MWh | 33% | 772 g/kWh | 162 |
-| SA1 | -$28/MWh | 75% | 104 g/kWh | 164 |
-| TAS1 | $6/MWh | 100% | 0 g/kWh | 140 |
-| NEM | $82/MWh | 38% | 573 g/kWh | 82 |
+| NSW1 | $647/MWh | 30% | 578 g/kWh | 1 |
+| QLD1 | $106/MWh | 28% | 602 g/kWh | 24 |
+| VIC1 | $12/MWh | 40% | 662 g/kWh | 91 |
+| SA1 | $23/MWh | 85% | 38 g/kWh | 82 |
+| TAS1 | $23/MWh | 100% | 0 g/kWh | 69 |
+| NEM | $300/MWh | 37% | 563 g/kWh | 2 |
 
 ### Recent records
 
+- **2026-10-12** NEM: highest daily peak demand (26,201.3 MW, previous best 25,778.1 MW)
+- **2026-10-12** NEM: highest price (9,666.9 $/MWh, previous best 8,854.9 $/MWh)
+- **2026-10-12** NSW1: highest daily peak demand (9,920.9 MW, previous best 8,906.3 MW)
+- **2026-10-12** QLD1: lowest emissions intensity (601.8 g/kWh, previous best 602.9 g/kWh)
+- **2026-10-12** QLD1: highest daily peak demand (8,445.5 MW, previous best 7,800.7 MW)
+- **2026-10-12** QLD1: highest solar share (17.0%, previous best 16.3%)
+- **2026-10-12** TAS1: highest wind share (53.7%, previous best 50.2%)
 - **2026-10-11** NEM: lowest price (-71.6 $/MWh, previous best -9.5 $/MWh)
 - **2026-10-11** NEM: most intervals with a negative price (82 intervals, previous best 13 intervals)
 - **2026-10-11** NSW1: lowest price (-9.6 $/MWh, previous best -5.6 $/MWh)
-- **2026-10-11** NSW1: most intervals with a negative price (34 intervals, previous best 2 intervals)
-- **2026-10-11** NSW1: highest solar share (23.4%, previous best 20.5%)
-- **2026-10-11** QLD1: highest solar share (16.3%, previous best 15.9%)
-- **2026-10-11** SA1: lowest price (-415.0 $/MWh, previous best -294.4 $/MWh)
-- **2026-10-11** SA1: most intervals with a negative price (164 intervals, previous best 158 intervals)
-- **2026-10-11** VIC1: lowest price (-365.2 $/MWh, previous best -148.4 $/MWh)
-- **2026-10-10** NEM: highest price (8,854.9 $/MWh, previous best 594.3 $/MWh)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.

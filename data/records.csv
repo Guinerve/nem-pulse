@@ -43,3 +43,10 @@ date,region,metric,label,value,previous,kind
 2026-10-11,SA1,min_price,Lowest price,-414.98,-294.4,min
 2026-10-11,SA1,negative_intervals,Most intervals with a negative price,164.0,158.0,max
 2026-10-11,VIC1,min_price,Lowest price,-365.23,-148.42,min
+2026-10-12,NEM,max_demand_mw,Highest daily peak demand,26201.3,25778.1,max
+2026-10-12,NEM,max_price,Highest price,9666.87,8854.85,max
+2026-10-12,NSW1,max_demand_mw,Highest daily peak demand,9920.9,8906.3,max
+2026-10-12,QLD1,solar_share,Highest solar share,0.1697,0.1627,max
+2026-10-12,QLD1,intensity_g_per_kwh,Lowest emissions intensity,601.8,602.9,min
+2026-10-12,QLD1,max_demand_mw,Highest daily peak demand,8445.5,7800.7,max
+2026-10-12,TAS1,wind_share,Highest wind share,0.5372,0.5021,max
