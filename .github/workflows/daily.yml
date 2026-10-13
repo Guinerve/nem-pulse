@@ -1,30 +1,42 @@
 name: Daily NEM summary
 on:
   schedule:
-    - cron: "30 20 * * *"   # 06:30 AEST; fetches the last 3 archived days so a late-published day is picked up next run
+    - cron: "30 20 * * *"   # 20:30 UTC = 06:30 AEST. Fetches the last 3 archived days, so a late day is picked up next run.
   workflow_dispatch:
     inputs:
       days:
-        description: "How many days to (re)fetch"
+        description: "How many days to fetch again (1 to 60)"
         default: "3"
 permissions:
-  contents: write
+  contents: read
+concurrency:
+  group: daily-data
+  cancel-in-progress: false
 jobs:
   update:
     runs-on: ubuntu-latest
-    env:
-      NEM_MCP_TOKEN: ${{ secrets.NEM_MCP_TOKEN }}
+    permissions:
+      contents: write   # only this job pushes the data commit
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v5
-      - name: Allow fetching the private nem-mcp dependency (not needed once it is public)
-        if: env.NEM_MCP_TOKEN != ''
-        run: git config --global url."https://x-access-token:${NEM_MCP_TOKEN}@github.com/".insteadOf "https://github.com/"
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false   # the token is not on disk while third-party code runs
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
       - name: Fetch, summarise, redraw charts
-        run: uv run nem-pulse --days "${{ github.event.inputs.days || 3 }}"   # exits non-zero on missing or malformed source data
-      - name: Commit if anything changed
+        env:
+          DAYS: ${{ github.event.inputs.days || '3' }}
         run: |
-          git config user.name "nem-pulse[bot]"
-          git config user.email "actions@users.noreply.github.com"
+          case "$DAYS" in ''|*[!0-9]*) echo "days must be a whole number, got: $DAYS" >&2; exit 1;; esac
+          if [ "$DAYS" -lt 1 ] || [ "$DAYS" -gt 60 ]; then echo "days must be 1 to 60, got: $DAYS" >&2; exit 1; fi
+          uv run --locked nem-pulse --days "$DAYS"   # exits 2 on missing or malformed source data
+      - name: Commit if anything changed
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data assets README.md
-          if git diff --cached --quiet; then echo "nothing to commit"; else git commit -m "data: $(date -u +%F)" && git push; fi
+          if git diff --cached --quiet; then echo "nothing to commit"; else
+            git commit -m "data: $(date -u +%F)"
+            git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_REF_NAME}"
+          fi

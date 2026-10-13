@@ -4,12 +4,12 @@
 """
 import io
 import sys
+from pathlib import Path
 
 import httpx
 import pandas as pd
 
 from nem_pulse import store
-from pathlib import Path
 
 month = sys.argv[1] if len(sys.argv) > 1 else "202610"
 ours = store.read_all(Path("data"))

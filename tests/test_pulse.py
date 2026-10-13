@@ -3,7 +3,7 @@ from datetime import date
 import pandas as pd
 import pytest
 
-from nem_pulse import records, store, summary
+from nem_pulse import cli, records, store, summary
 
 REGIONS = ["NSW1", "QLD1", "SA1", "TAS1", "VIC1"]
 DAY = date(2026, 9, 28)
@@ -106,9 +106,88 @@ def test_missing_demand_fails_loudly():
 
 
 def test_default_day_is_two_days_back_because_the_archive_lags():
-    from datetime import datetime, timedelta, timezone
+    from datetime import UTC, datetime
 
     from nem_pulse.cli import latest_archived_day
 
-    now = datetime(2026, 10, 12, 20, 30, tzinfo=timezone.utc)  # 06:30 AEST on the 13th
+    now = datetime(2026, 10, 12, 20, 30, tzinfo=UTC)  # 06:30 AEST on the 13th
     assert latest_archived_day(now) == date(2026, 10, 11)  # NEM date is the 13th; archive trails by two days
+
+
+README_TEMPLATE = "# Title\n\n<!-- PULSE:START -->\nold\n<!-- PULSE:END -->\n\nFooter\n"
+
+
+def _seed(tmp_path, day=DAY):
+    """Write one real summary day and a README with markers; return (data dir, readme path)."""
+    data = tmp_path / "data"
+    p = make_prices()
+    p.loc[p["region"] == "VIC1", "rrp"] = -3.0
+    store.write_day(data, day, summary.summarise_day(day, p, make_scada(), GENS))
+    readme = tmp_path / "README.md"
+    readme.write_text(README_TEMPLATE)
+    return data, readme
+
+
+def test_readme_block_is_replaced_between_markers(tmp_path):
+    data, readme = _seed(tmp_path)
+    cli.render_readme(data, store.read_all(data), readme)
+    text = readme.read_text()
+    assert text.startswith("# Title\n\n<!-- PULSE:START -->\n_Updated for 2026-09-28")
+    assert "old" not in text and text.endswith("<!-- PULSE:END -->\n\nFooter\n")
+    assert "| VIC1 | -$3/MWh |" in text  # sign before the dollar sign, not "$-3"
+
+
+def test_readme_formats_previous_best_like_the_record_value(tmp_path):
+    data, readme = _seed(tmp_path)
+    pd.DataFrame([
+        {"date": "2026-09-28", "region": "NSW1", "metric": "renewable_share",
+         "label": "Highest renewable share", "value": 0.434, "previous": 0.4031, "kind": "max"},
+        {"date": "2026-09-28", "region": "VIC1", "metric": "min_price",
+         "label": "Lowest price", "value": -148.4, "previous": -60.0, "kind": "min"},
+    ]).to_csv(data / "records.csv", index=False)
+    cli.render_readme(data, store.read_all(data), readme)
+    text = readme.read_text()
+    assert "highest renewable share (43.4%, previous best 40.3%)" in text
+    assert "lowest price (-148.4, previous best -60.0)" in text
+
+
+class _StubClient:
+    def generators(self):
+        return GENS
+
+
+def _stub_fetch(monkeypatch):
+    p = make_prices()
+    monkeypatch.setattr(cli, "NemClient", _StubClient)
+    monkeypatch.setattr(cli, "load_prices_day", lambda day: p.assign(
+        interval_end=p["interval_end"] + pd.Timedelta(days=(day - DAY).days)))
+    monkeypatch.setattr(cli, "load_scada_day", lambda day: make_scada())
+
+
+def test_cli_runs_offline_and_rewrites_readme(tmp_path, monkeypatch):
+    data, readme = _seed(tmp_path)
+    _stub_fetch(monkeypatch)
+    argv = ["--date", "2026-09-28", "--data", str(data), "--readme", str(readme),
+            "--assets", str(tmp_path / "assets")]
+    assert cli.main(argv) == 0
+    assert (data / "latest.csv").exists()
+    assert sorted(p.name for p in (tmp_path / "assets").iterdir()) == [
+        "intensity.png", "price.png", "renewables.png"]
+    assert "_Updated for 2026-09-28" in readme.read_text()
+
+
+def test_cli_exits_2_when_readme_markers_are_missing(tmp_path, monkeypatch, capsys):
+    data, readme = _seed(tmp_path)
+    readme.write_text("# No markers here\n")
+    _stub_fetch(monkeypatch)
+    argv = ["--date", "2026-09-28", "--data", str(data), "--readme", str(readme),
+            "--assets", str(tmp_path / "assets")]
+    assert cli.main(argv) == 2
+    assert "PULSE markers" in capsys.readouterr().err
+
+
+@pytest.mark.parametrize("days", ["0", "-1", "abc"])
+def test_cli_rejects_a_days_value_below_one(days):
+    with pytest.raises(SystemExit) as exc:
+        cli.main(["--days", days])
+    assert exc.value.code == 2
