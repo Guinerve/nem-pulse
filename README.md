@@ -1,83 +1,23 @@
 # nem-pulse
 
-> A self-updating dataset repo for the NEM, maintained by a scheduled GitHub Action.
+A small public dataset of daily summaries for Australia's National Electricity Market (NEM). A scheduled GitHub Action keeps it up to date.
 
-**Status:** v0.1 core built; seeded with 10 days; reconciles with AEMO · Portfolio project #8 · see `../README.md`
+[![CI](https://github.com/Guinerve/nem-pulse/actions/workflows/ci.yml/badge.svg)](https://github.com/Guinerve/nem-pulse/actions/workflows/ci.yml)
+[![Daily NEM summary](https://github.com/Guinerve/nem-pulse/actions/workflows/daily.yml/badge.svg)](https://github.com/Guinerve/nem-pulse/actions/workflows/daily.yml)
+[![Licence: MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE)
 
-## The idea
+![Renewable share of generation per NEM region, one point per day](assets/renewables.png)
 
-The "git scraping" pattern: a scheduled Action pulls a daily NEM summary (prices, renewable share, records broken), commits it as CSV, and regenerates charts in the README. The repo stays useful with no upkeep and becomes a small public dataset.
+Every morning the Action downloads the AEMO archive files for the newest days. It reduces them to one row per region per day: prices, demand, generation mix and emissions intensity. Then it commits the CSV files, redraws the charts and rewrites the [Latest](#latest) section below.
 
-## Stack
-
-Python (uv), the shared `nem` client, matplotlib, GitHub Actions cron.
-
-Python project managed with `uv`; target a one-command run (`uv run ...`).
-
-## Build plan (v1)
-
-- [x] Daily summary script → `data/YYYY/MM/DD.csv` plus a rolling `latest.csv`
-- [x] Records detector (`data/records.csv`; needs at least 7 days of history) (e.g. highest renewable share, lowest operational demand)
-- [x] Regenerate charts on each run (`assets/*.png`; not yet embedded in this README)
-- [x] Scheduled workflow (`.github/workflows/daily.yml`, 06:30 AEST; untested on GitHub) with a commit-only-if-changed step
-
-## Run it
-
-```bash
-uv sync
-uv run nem-pulse                              # newest archived day (NEM today minus 2)
-uv run nem-pulse --date 2026-10-10 --days 10  # backfill
-uv run pytest -q                              # 11 tests
-```
-
-Depends on `nem-mcp` as a git dependency on `github.com/Guinerve/nem-mcp`. It is public, so the workflow needs no secret.
-
-## How I know it's right
-
-**Reconciliation with AEMO's published "Aggregated price and demand" CSVs** (`scripts/reconcile.py`, `docs/reconciliation-2026-10.txt`), 50 region-days (2026-10-01 to 10):
-
-- daily average price: max difference **0.0049 $/MWh** (mean 0.0026)
-- daily average demand: max difference **0.048 MW** (mean 0.027)
-- daily max price: max difference **0.0000**
-- 288 intervals per day in both sources, every day
-
-The small differences are rounding.
-
-**Fails loudly**: `summarise_day` raises `SourceDataError` for an empty source, fewer than 285 of 288 intervals, or NaN prices; the CLI exits with status 2 so the workflow goes red and nothing partial is committed (tested). The same applies to missing demand, a missing README marker, an unlistable archive or a failed download. The commit step only commits when files changed. Archive days are cached only if they look complete (≥280 intervals), and cache writes are atomic.
-
-## Limits
-
-Generation shares come from scheduled/semi-scheduled SCADA and **exclude rooftop solar**, so "renewable share" understates daytime renewables in NSW, QLD and SA. The NEM price is demand-weighted across regions. "Records" are relative to this dataset's own history only (10 days so far, so early records are meaningless).
-
-Daily resolution only; derived figures, not an official AEMO dataset.
-
-## Next (tomorrow)
-
-- Add rooftop PV; embed the charts above in this README.
-- Backfill a longer history (the archive goes back years) so records mean something.
-- Make `nem` installable from git so the workflow runs standalone; then test the Action.
-
-## Stretch
-
-Datasette or a static explorer page on GitHub Pages.
-
-## Definition of done
-
-- [ ] Hero GIF or screenshot at the top of this README
-- [x] Live demo link or one-command run (`uv run nem-pulse`)
-- [ ] "How I know it's right" section filled in with real results
-- [ ] Tests passing in CI, badge added
-- [ ] "Limits" section written
-- [ ] Licence chosen, repo description and topics set
-- [ ] Pinned on GitHub profile and added to guinerve.github.io
-- [ ] Added to `career-radar/data/cv/portfolio.json`
+I built it to try the "git scraping" pattern on grid data: the repository is the dataset, and the commit history shows when each number arrived. Everything runs in a scheduled GitHub Action, so there is no server to maintain.
 
 ## Latest
 
 <!-- PULSE:START -->
 _Updated for 2026-10-11 (NEM time)._
 
-| Region | Avg price | Renewables | Intensity | Neg. price intervals |
+| Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
 | NSW1 | $134/MWh | 39% | 504 g/kWh | 34 |
 | QLD1 | $109/MWh | 27% | 620 g/kWh | 96 |
@@ -100,4 +40,108 @@ _Updated for 2026-10-11 (NEM time)._
 - **2026-10-10** NSW1: lowest emissions intensity (465.1, previous best 488.4)
 <!-- PULSE:END -->
 
-> The AEMO archive trails real time by about two days, so this dataset is two days behind the grid. (Found when the first scheduled run on GitHub failed with a 404 for "yesterday".)
+The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.
+
+## What is in the data
+
+| File | Content |
+|---|---|
+| `data/YYYY/MM/DD.csv` | One file per day. One row for each region (NSW1, QLD1, SA1, TAS1, VIC1) and one for the whole NEM. |
+| `data/latest.csv` | The newest 30 days in one file. |
+| `data/records.csv` | Days that set a new high or low for a region, compared with all earlier days in this dataset. |
+| `assets/*.png` | Charts of renewable share, average price and emissions intensity for the last 60 days. |
+
+Each daily row has these columns:
+
+- `avg_price`, `min_price`, `max_price` in $/MWh, from the 288 five minute dispatch intervals.
+- `negative_intervals`: the number of intervals with a price below zero.
+- `avg_demand_mw`, `max_demand_mw`: operational demand.
+- `generation_mwh` and the share of it from renewables, wind, solar, coal, gas, hydro and batteries.
+- `intensity_g_per_kwh`: emissions intensity in g CO₂e/kWh.
+
+The NEM row uses a price weighted by regional demand for each interval.
+
+## Quick start
+
+You need Python 3.11 or later and [uv](https://docs.astral.sh/uv/).
+
+```bash
+git clone https://github.com/Guinerve/nem-pulse.git
+cd nem-pulse
+uv sync
+uv run nem-pulse --date 2026-10-10 --days 1
+```
+
+The last command downloads 10 October 2026 again. It then rewrites `data/latest.csv`, the charts and the Latest section of the README. The CSV file for that day does not change, so the output says `unchanged`.
+
+Other examples:
+
+```bash
+uv run nem-pulse                              # the newest archived day (NEM today minus 2)
+uv run nem-pulse --date 2026-10-10 --days 10  # 1 to 10 October 2026
+uv run nem-pulse --help                       # all options
+```
+
+To read the data without installing anything, open a CSV file on GitHub or load it with pandas:
+
+```python
+import pandas as pd
+df = pd.read_csv("https://raw.githubusercontent.com/Guinerve/nem-pulse/main/data/latest.csv")
+```
+
+## How it works
+
+1. The workflow in `.github/workflows/daily.yml` runs at 20:30 UTC (06:30 AEST) each day.
+2. It fetches the last 3 archived days. A day that AEMO publishes late is picked up on the next run.
+3. The [`nem`](https://github.com/Guinerve/nem-mcp) client downloads the NEMWeb price and SCADA archive files for each day.
+4. `summarise_day` joins SCADA output to a generator list with fuel types and emission factors. It then sums each day per region.
+5. `store.write_day` writes the CSV only when its content changed.
+6. `find_records` compares each new day with all earlier days. It starts after 7 days of history.
+7. The workflow commits only when a file changed.
+
+If source data is missing or incomplete, the run stops with exit status 2. Examples are an empty file, fewer than 285 of 288 intervals, a missing price or demand value, or a failed download. The workflow then fails and commits nothing. A README without the `PULSE` markers also stops the run.
+
+The workflow token can only read by default. Only the data job can write, and it uses the token only for the final `git push`. Actions are pinned to commit SHAs.
+
+## How I know it is right
+
+I compared the daily figures with AEMO's published "Aggregated price and demand" CSV files. The script is `scripts/reconcile.py` and the output is in `docs/reconciliation-2026-10.txt`. It covers 50 region days, 1 to 10 October 2026.
+
+| Check | Largest difference | Mean difference |
+|---|---:|---:|
+| Daily average price | 0.0049 $/MWh | 0.0026 $/MWh |
+| Daily average demand | 0.048 MW | 0.027 MW |
+| Daily maximum price | 0.0000 $/MWh | |
+| Intervals per day | 288 in both sources, every day | |
+
+The small differences come from rounding. To run the check again:
+
+```bash
+uv run python scripts/reconcile.py 202610
+```
+
+## Limits
+
+- Generation shares use SCADA data for scheduled and semi-scheduled units. **Rooftop solar is not included.** The renewable share is therefore too low in daylight hours, most of all in NSW, QLD and SA.
+- Records compare a day only with the history in this dataset. It starts on 1 October 2026, so the current records beat only 7 to 9 earlier days.
+- Only price and demand are checked against AEMO. I have not yet checked the generation mix or emissions intensity against another source.
+- The figures are daily and derived from AEMO data. This is not an official AEMO dataset.
+
+## Roadmap
+
+- Backfill a longer history from the archive, so that records mean more.
+- Add rooftop solar estimates to the generation mix.
+
+## Development
+
+```bash
+uv sync
+uv run pytest -q        # 20 tests, no network needed
+uv run ruff check .
+```
+
+The tests use synthetic interval data. They cover the daily summary, the checks that stop a bad run, the CSV store, record detection, the README rewrite and the command line exit codes.
+
+## Licence
+
+MIT. See [LICENSE](LICENSE).

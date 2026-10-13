@@ -1,7 +1,7 @@
 [project]
 name = "nem-pulse"
 version = "0.1.0"
-description = "A self-updating dataset of daily NEM summaries (prices, demand, renewable share, emissions intensity, records), maintained by a scheduled GitHub Action."
+description = "Daily summaries of the Australian NEM (prices, demand, renewable share, emissions intensity, records), updated by a scheduled GitHub Action."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = ["nem-mcp", "pandas>=2.2", "matplotlib>=3.8"]

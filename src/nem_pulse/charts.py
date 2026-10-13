@@ -22,7 +22,7 @@ CHARTS = [
     # metric, title, file name, scale, unit, footnote
     ("renewable_share", "Renewable share of generation", "renewables.png", 100, "%",
      "Excludes rooftop solar, so daytime renewables in NSW, QLD and SA read low."),
-    ("avg_price", "Average daily spot price", "price.png", 1, "$/MWh", "Time-weighted mean of 5-minute prices."),
+    ("avg_price", "Average daily spot price", "price.png", 1, "$/MWh", "Mean of the 288 five minute prices in each day."),
     ("intensity_g_per_kwh", "Emissions intensity of generation", "intensity.png", 1, "g CO₂e/kWh",
      "Scheduled and semi-scheduled units only."),
 ]
