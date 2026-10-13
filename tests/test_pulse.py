@@ -148,7 +148,7 @@ def test_readme_formats_previous_best_like_the_record_value(tmp_path):
     cli.render_readme(data, store.read_all(data), readme)
     text = readme.read_text()
     assert "highest renewable share (43.4%, previous best 40.3%)" in text
-    assert "lowest price (-148.4, previous best -60.0)" in text
+    assert "lowest price (-148.4 $/MWh, previous best -60.0 $/MWh)" in text
 
 
 class _StubClient:

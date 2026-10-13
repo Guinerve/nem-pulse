@@ -34,8 +34,16 @@ def _money(value: float) -> str:
     return f"{'-' if value < 0 else ''}${abs(value):,.0f}/MWh"
 
 
+RECORD_UNITS = {"max_price": " $/MWh", "min_price": " $/MWh", "intensity_g_per_kwh": " g/kWh",
+                "max_demand_mw": " MW", "negative_intervals": " intervals"}
+
+
 def _record_value(metric: str, value: float) -> str:
-    return f"{value:.1%}" if metric.endswith("_share") else f"{value:,.1f}"
+    if metric.endswith("_share"):
+        return f"{value:.1%}"
+    if metric == "negative_intervals":
+        return f"{value:,.0f}{RECORD_UNITS[metric]}"
+    return f"{value:,.1f}{RECORD_UNITS.get(metric, '')}"
 
 
 def render_readme(root: Path, history: pd.DataFrame, readme: Path = Path("README.md")) -> None:
