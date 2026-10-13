@@ -191,3 +191,10 @@ def test_cli_rejects_a_days_value_below_one(days):
     with pytest.raises(SystemExit) as exc:
         cli.main(["--days", days])
     assert exc.value.code == 2
+
+
+def test_chart_labels_are_spread_apart_without_reordering():
+    from nem_pulse.charts import _spread
+
+    assert _spread([10.0, 10.5, 50.0], gap=2) == [10.0, 12.0, 50.0]
+    assert _spread([30.0, 29.0], gap=5) == [34.0, 29.0]
