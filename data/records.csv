@@ -50,3 +50,5 @@ date,region,metric,label,value,previous,kind
 2026-10-12,QLD1,intensity_g_per_kwh,Lowest emissions intensity,601.8,602.9,min
 2026-10-12,QLD1,max_demand_mw,Highest daily peak demand,8445.5,7800.7,max
 2026-10-12,TAS1,wind_share,Highest wind share,0.5372,0.5021,max
+2026-10-15,NSW1,wind_share,Highest wind share,0.214,0.1862,max
+2026-10-15,QLD1,wind_share,Highest wind share,0.2127,0.1103,max
