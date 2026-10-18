@@ -15,29 +15,29 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-10-16 (NEM time)._
+_Updated for 2026-10-17 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $88/MWh | 42% | 490 g/kWh | 0 |
-| QLD1 | $80/MWh | 28% | 621 g/kWh | 0 |
-| VIC1 | $55/MWh | 34% | 741 g/kWh | 68 |
-| SA1 | $58/MWh | 80% | 72 g/kWh | 68 |
-| TAS1 | $59/MWh | 100% | 0 g/kWh | 64 |
-| NEM | $76/MWh | 39% | 566 g/kWh | 0 |
+| NSW1 | $66/MWh | 47% | 438 g/kWh | 0 |
+| QLD1 | $59/MWh | 33% | 586 g/kWh | 0 |
+| VIC1 | $10/MWh | 32% | 763 g/kWh | 120 |
+| SA1 | -$11/MWh | 77% | 66 g/kWh | 127 |
+| TAS1 | $14/MWh | 100% | 0 g/kWh | 118 |
+| NEM | $46/MWh | 41% | 546 g/kWh | 12 |
 
 ### Recent records
 
+- **2026-10-17** NSW1: lowest emissions intensity (437.7 g/kWh, previous best 465.1 g/kWh)
+- **2026-10-17** NSW1: highest renewable share (46.6%, previous best 43.4%)
+- **2026-10-17** NSW1: highest wind share (23.8%, previous best 21.9%)
+- **2026-10-17** QLD1: lowest emissions intensity (586.4 g/kWh, previous best 601.8 g/kWh)
+- **2026-10-17** QLD1: highest renewable share (32.7%, previous best 28.8%)
+- **2026-10-17** QLD1: highest wind share (21.9%, previous best 21.3%)
 - **2026-10-16** NSW1: highest wind share (21.9%, previous best 21.4%)
 - **2026-10-15** NSW1: highest wind share (21.4%, previous best 18.6%)
 - **2026-10-15** QLD1: highest wind share (21.3%, previous best 11.0%)
 - **2026-10-12** NEM: highest daily peak demand (26,201.3 MW, previous best 25,778.1 MW)
-- **2026-10-12** NEM: highest price (9,666.9 $/MWh, previous best 8,854.9 $/MWh)
-- **2026-10-12** NSW1: highest daily peak demand (9,920.9 MW, previous best 8,906.3 MW)
-- **2026-10-12** QLD1: lowest emissions intensity (601.8 g/kWh, previous best 602.9 g/kWh)
-- **2026-10-12** QLD1: highest daily peak demand (8,445.5 MW, previous best 7,800.7 MW)
-- **2026-10-12** QLD1: highest solar share (17.0%, previous best 16.3%)
-- **2026-10-12** TAS1: highest wind share (53.7%, previous best 50.2%)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.

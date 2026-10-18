@@ -53,3 +53,9 @@ date,region,metric,label,value,previous,kind
 2026-10-15,NSW1,wind_share,Highest wind share,0.214,0.1862,max
 2026-10-15,QLD1,wind_share,Highest wind share,0.2127,0.1103,max
 2026-10-16,NSW1,wind_share,Highest wind share,0.2185,0.214,max
+2026-10-17,NSW1,renewable_share,Highest renewable share,0.466,0.4343,max
+2026-10-17,NSW1,wind_share,Highest wind share,0.2379,0.2185,max
+2026-10-17,NSW1,intensity_g_per_kwh,Lowest emissions intensity,437.7,465.1,min
+2026-10-17,QLD1,renewable_share,Highest renewable share,0.3266,0.2878,max
+2026-10-17,QLD1,wind_share,Highest wind share,0.2189,0.2127,max
+2026-10-17,QLD1,intensity_g_per_kwh,Lowest emissions intensity,586.4,601.8,min
