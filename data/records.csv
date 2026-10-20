@@ -59,3 +59,7 @@ date,region,metric,label,value,previous,kind
 2026-10-17,QLD1,renewable_share,Highest renewable share,0.3266,0.2878,max
 2026-10-17,QLD1,wind_share,Highest wind share,0.2189,0.2127,max
 2026-10-17,QLD1,intensity_g_per_kwh,Lowest emissions intensity,586.4,601.8,min
+2026-10-19,SA1,renewable_share,Highest renewable share,0.9149,0.8899,max
+2026-10-19,SA1,wind_share,Highest wind share,0.8923,0.8797,max
+2026-10-19,SA1,negative_intervals,Most intervals with a negative price,189.0,164.0,max
+2026-10-19,VIC1,negative_intervals,Most intervals with a negative price,206.0,197.0,max
