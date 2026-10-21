@@ -15,19 +15,20 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-10-19 (NEM time)._
+_Updated for 2026-10-20 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $104/MWh | 39% | 512 g/kWh | 0 |
-| QLD1 | $103/MWh | 22% | 673 g/kWh | 0 |
-| VIC1 | -$8/MWh | 44% | 631 g/kWh | 206 |
-| SA1 | $7/MWh | 91% | 23 g/kWh | 189 |
-| TAS1 | $79/MWh | 100% | 0 g/kWh | 42 |
-| NEM | $70/MWh | 41% | 542 g/kWh | 0 |
+| NSW1 | $102/MWh | 35% | 536 g/kWh | 16 |
+| QLD1 | $94/MWh | 27% | 628 g/kWh | 19 |
+| VIC1 | $39/MWh | 43% | 648 g/kWh | 150 |
+| SA1 | $73/MWh | 60% | 144 g/kWh | 62 |
+| TAS1 | $102/MWh | 97% | 21 g/kWh | 0 |
+| NEM | $83/MWh | 39% | 556 g/kWh | 16 |
 
 ### Recent records
 
+- **2026-10-20** NSW1: lowest price (-10.5 $/MWh, previous best -9.6 $/MWh)
 - **2026-10-19** SA1: most intervals with a negative price (189 intervals, previous best 164 intervals)
 - **2026-10-19** SA1: highest renewable share (91.5%, previous best 89.0%)
 - **2026-10-19** SA1: highest wind share (89.2%, previous best 88.0%)
@@ -37,7 +38,6 @@ _Updated for 2026-10-19 (NEM time)._
 - **2026-10-17** NSW1: highest wind share (23.8%, previous best 21.9%)
 - **2026-10-17** QLD1: lowest emissions intensity (586.4 g/kWh, previous best 601.8 g/kWh)
 - **2026-10-17** QLD1: highest renewable share (32.7%, previous best 28.8%)
-- **2026-10-17** QLD1: highest wind share (21.9%, previous best 21.3%)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.

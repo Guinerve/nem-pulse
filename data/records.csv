@@ -63,3 +63,4 @@ date,region,metric,label,value,previous,kind
 2026-10-19,SA1,wind_share,Highest wind share,0.8923,0.8797,max
 2026-10-19,SA1,negative_intervals,Most intervals with a negative price,189.0,164.0,max
 2026-10-19,VIC1,negative_intervals,Most intervals with a negative price,206.0,197.0,max
+2026-10-20,NSW1,min_price,Lowest price,-10.5,-9.59,min
