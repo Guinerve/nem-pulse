@@ -15,19 +15,22 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-10-21 (NEM time)._
+_Updated for 2026-10-22 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $131/MWh | 30% | 572 g/kWh | 0 |
-| QLD1 | $123/MWh | 21% | 679 g/kWh | 0 |
-| VIC1 | $119/MWh | 24% | 820 g/kWh | 6 |
-| SA1 | $92/MWh | 49% | 179 g/kWh | 88 |
-| TAS1 | $99/MWh | 96% | 22 g/kWh | 0 |
-| NEM | $124/MWh | 30% | 627 g/kWh | 0 |
+| NSW1 | $117/MWh | 35% | 555 g/kWh | 0 |
+| QLD1 | $118/MWh | 21% | 686 g/kWh | 0 |
+| VIC1 | $68/MWh | 43% | 635 g/kWh | 58 |
+| SA1 | $73/MWh | 63% | 153 g/kWh | 92 |
+| TAS1 | $97/MWh | 100% | 0 g/kWh | 0 |
+| NEM | $104/MWh | 37% | 572 g/kWh | 0 |
 
 ### Recent records
 
+- **2026-10-22** NEM: highest daily peak demand (26,409.2 MW, previous best 26,201.3 MW)
+- **2026-10-22** SA1: highest daily peak demand (1,802.3 MW, previous best 1,627.3 MW)
+- **2026-10-22** VIC1: highest daily peak demand (7,300.9 MW, previous best 6,847.7 MW)
 - **2026-10-20** NSW1: lowest price (-10.5 $/MWh, previous best -9.6 $/MWh)
 - **2026-10-19** SA1: most intervals with a negative price (189 intervals, previous best 164 intervals)
 - **2026-10-19** SA1: highest renewable share (91.5%, previous best 89.0%)
@@ -35,9 +38,6 @@ _Updated for 2026-10-21 (NEM time)._
 - **2026-10-19** VIC1: most intervals with a negative price (206 intervals, previous best 197 intervals)
 - **2026-10-17** NSW1: lowest emissions intensity (437.7 g/kWh, previous best 465.1 g/kWh)
 - **2026-10-17** NSW1: highest renewable share (46.6%, previous best 43.4%)
-- **2026-10-17** NSW1: highest wind share (23.8%, previous best 21.9%)
-- **2026-10-17** QLD1: lowest emissions intensity (586.4 g/kWh, previous best 601.8 g/kWh)
-- **2026-10-17** QLD1: highest renewable share (32.7%, previous best 28.8%)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.
