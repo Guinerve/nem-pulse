@@ -67,3 +67,4 @@ date,region,metric,label,value,previous,kind
 2026-10-22,NEM,max_demand_mw,Highest daily peak demand,26409.2,26201.3,max
 2026-10-22,SA1,max_demand_mw,Highest daily peak demand,1802.3,1627.3,max
 2026-10-22,VIC1,max_demand_mw,Highest daily peak demand,7300.9,6847.7,max
+2026-10-23,VIC1,max_demand_mw,Highest daily peak demand,7367.2,7300.9,max
