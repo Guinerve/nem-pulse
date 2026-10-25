@@ -15,16 +15,16 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-10-23 (NEM time)._
+_Updated for 2026-10-24 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $112/MWh | 34% | 551 g/kWh | 0 |
-| QLD1 | $102/MWh | 23% | 664 g/kWh | 0 |
-| VIC1 | $40/MWh | 49% | 559 g/kWh | 102 |
-| SA1 | $83/MWh | 64% | 154 g/kWh | 34 |
-| TAS1 | $104/MWh | 96% | 22 g/kWh | 0 |
-| NEM | $89/MWh | 40% | 545 g/kWh | 0 |
+| NSW1 | $104/MWh | 30% | 579 g/kWh | 0 |
+| QLD1 | $96/MWh | 20% | 694 g/kWh | 0 |
+| VIC1 | $109/MWh | 23% | 884 g/kWh | 0 |
+| SA1 | $84/MWh | 68% | 110 g/kWh | 65 |
+| TAS1 | $107/MWh | 100% | 0 g/kWh | 0 |
+| NEM | $102/MWh | 30% | 638 g/kWh | 0 |
 
 ### Recent records
 
