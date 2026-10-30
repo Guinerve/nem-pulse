@@ -69,3 +69,6 @@ date,region,metric,label,value,previous,kind
 2026-10-22,VIC1,max_demand_mw,Highest daily peak demand,7300.9,6847.7,max
 2026-10-23,VIC1,max_demand_mw,Highest daily peak demand,7367.2,7300.9,max
 2026-10-26,QLD1,max_demand_mw,Highest daily peak demand,8475.7,8445.5,max
+2026-10-29,NEM,solar_share,Highest solar share,0.1662,0.1448,max
+2026-10-29,NSW1,solar_share,Highest solar share,0.2505,0.234,max
+2026-10-29,VIC1,solar_share,Highest solar share,0.1229,0.1081,max
