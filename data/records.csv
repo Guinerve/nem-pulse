@@ -72,3 +72,4 @@ date,region,metric,label,value,previous,kind
 2026-10-29,NEM,solar_share,Highest solar share,0.1662,0.1448,max
 2026-10-29,NSW1,solar_share,Highest solar share,0.2505,0.234,max
 2026-10-29,VIC1,solar_share,Highest solar share,0.1229,0.1081,max
+2026-11-01,QLD1,solar_share,Highest solar share,0.1767,0.1697,max
