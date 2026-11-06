@@ -15,19 +15,22 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-11-03 (NEM time)._
+_Updated for 2026-11-04 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $108/MWh | 34% | 561 g/kWh | 0 |
-| QLD1 | $93/MWh | 26% | 638 g/kWh | 0 |
-| VIC1 | $80/MWh | 32% | 768 g/kWh | 31 |
-| SA1 | $73/MWh | 36% | 250 g/kWh | 111 |
-| TAS1 | $78/MWh | 99% | 6 g/kWh | 30 |
-| NEM | $96/MWh | 33% | 603 g/kWh | 0 |
+| NSW1 | $86/MWh | 37% | 496 g/kWh | 0 |
+| QLD1 | $60/MWh | 27% | 617 g/kWh | 88 |
+| VIC1 | $38/MWh | 48% | 589 g/kWh | 87 |
+| SA1 | $25/MWh | 69% | 127 g/kWh | 137 |
+| TAS1 | $90/MWh | 96% | 23 g/kWh | 3 |
+| NEM | $65/MWh | 41% | 518 g/kWh | 0 |
 
 ### Recent records
 
+- **2026-11-04** QLD1: highest daily peak demand (8,699.3 MW, previous best 8,475.7 MW)
+- **2026-11-04** QLD1: highest solar share (18.0%, previous best 17.7%)
+- **2026-11-04** TAS1: lowest price (-991.6 $/MWh, previous best -157.8 $/MWh)
 - **2026-11-01** QLD1: highest solar share (17.7%, previous best 17.0%)
 - **2026-10-29** NEM: highest solar share (16.6%, previous best 14.5%)
 - **2026-10-29** NSW1: highest solar share (25.1%, previous best 23.4%)
@@ -35,9 +38,6 @@ _Updated for 2026-11-03 (NEM time)._
 - **2026-10-26** QLD1: highest daily peak demand (8,475.7 MW, previous best 8,445.5 MW)
 - **2026-10-23** VIC1: highest daily peak demand (7,367.2 MW, previous best 7,300.9 MW)
 - **2026-10-22** NEM: highest daily peak demand (26,409.2 MW, previous best 26,201.3 MW)
-- **2026-10-22** SA1: highest daily peak demand (1,802.3 MW, previous best 1,627.3 MW)
-- **2026-10-22** VIC1: highest daily peak demand (7,300.9 MW, previous best 6,847.7 MW)
-- **2026-10-20** NSW1: lowest price (-10.5 $/MWh, previous best -9.6 $/MWh)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.
