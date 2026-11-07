@@ -15,19 +15,22 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-11-05 (NEM time)._
+_Updated for 2026-11-06 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $61/MWh | 43% | 461 g/kWh | 51 |
-| QLD1 | $58/MWh | 28% | 615 g/kWh | 104 |
-| VIC1 | $53/MWh | 37% | 676 g/kWh | 95 |
-| SA1 | $39/MWh | 44% | 200 g/kWh | 112 |
-| TAS1 | $107/MWh | 97% | 19 g/kWh | 0 |
-| NEM | $61/MWh | 39% | 535 g/kWh | 41 |
+| NSW1 | $78/MWh | 37% | 501 g/kWh | 1 |
+| QLD1 | $51/MWh | 29% | 602 g/kWh | 107 |
+| VIC1 | $56/MWh | 42% | 624 g/kWh | 79 |
+| SA1 | $16/MWh | 54% | 182 g/kWh | 122 |
+| TAS1 | $59/MWh | 99% | 6 g/kWh | 64 |
+| NEM | $62/MWh | 39% | 536 g/kWh | 21 |
 
 ### Recent records
 
+- **2026-11-06** NEM: highest solar share (16.8%, previous best 16.6%)
+- **2026-11-06** QLD1: most intervals with a negative price (107 intervals, previous best 104 intervals)
+- **2026-11-06** QLD1: highest solar share (18.8%, previous best 18.0%)
 - **2026-11-05** NSW1: lowest price (-23.5 $/MWh, previous best -10.5 $/MWh)
 - **2026-11-05** NSW1: most intervals with a negative price (51 intervals, previous best 34 intervals)
 - **2026-11-05** QLD1: highest daily peak demand (9,361.0 MW, previous best 8,699.3 MW)
@@ -35,9 +38,6 @@ _Updated for 2026-11-05 (NEM time)._
 - **2026-11-04** QLD1: highest solar share (18.0%, previous best 17.7%)
 - **2026-11-04** TAS1: lowest price (-991.6 $/MWh, previous best -157.8 $/MWh)
 - **2026-11-01** QLD1: highest solar share (17.7%, previous best 17.0%)
-- **2026-10-29** NEM: highest solar share (16.6%, previous best 14.5%)
-- **2026-10-29** NSW1: highest solar share (25.1%, previous best 23.4%)
-- **2026-10-29** VIC1: highest solar share (12.3%, previous best 10.8%)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.
