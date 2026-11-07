@@ -15,19 +15,22 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-11-04 (NEM time)._
+_Updated for 2026-11-05 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $86/MWh | 37% | 496 g/kWh | 0 |
-| QLD1 | $60/MWh | 27% | 617 g/kWh | 88 |
-| VIC1 | $38/MWh | 48% | 589 g/kWh | 87 |
-| SA1 | $25/MWh | 69% | 127 g/kWh | 137 |
-| TAS1 | $90/MWh | 96% | 23 g/kWh | 3 |
-| NEM | $65/MWh | 41% | 518 g/kWh | 0 |
+| NSW1 | $61/MWh | 43% | 461 g/kWh | 51 |
+| QLD1 | $58/MWh | 28% | 615 g/kWh | 104 |
+| VIC1 | $53/MWh | 37% | 676 g/kWh | 95 |
+| SA1 | $39/MWh | 44% | 200 g/kWh | 112 |
+| TAS1 | $107/MWh | 97% | 19 g/kWh | 0 |
+| NEM | $61/MWh | 39% | 535 g/kWh | 41 |
 
 ### Recent records
 
+- **2026-11-05** NSW1: lowest price (-23.5 $/MWh, previous best -10.5 $/MWh)
+- **2026-11-05** NSW1: most intervals with a negative price (51 intervals, previous best 34 intervals)
+- **2026-11-05** QLD1: highest daily peak demand (9,361.0 MW, previous best 8,699.3 MW)
 - **2026-11-04** QLD1: highest daily peak demand (8,699.3 MW, previous best 8,475.7 MW)
 - **2026-11-04** QLD1: highest solar share (18.0%, previous best 17.7%)
 - **2026-11-04** TAS1: lowest price (-991.6 $/MWh, previous best -157.8 $/MWh)
@@ -35,9 +38,6 @@ _Updated for 2026-11-04 (NEM time)._
 - **2026-10-29** NEM: highest solar share (16.6%, previous best 14.5%)
 - **2026-10-29** NSW1: highest solar share (25.1%, previous best 23.4%)
 - **2026-10-29** VIC1: highest solar share (12.3%, previous best 10.8%)
-- **2026-10-26** QLD1: highest daily peak demand (8,475.7 MW, previous best 8,445.5 MW)
-- **2026-10-23** VIC1: highest daily peak demand (7,367.2 MW, previous best 7,300.9 MW)
-- **2026-10-22** NEM: highest daily peak demand (26,409.2 MW, previous best 26,201.3 MW)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.

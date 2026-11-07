@@ -76,3 +76,6 @@ date,region,metric,label,value,previous,kind
 2026-11-04,QLD1,solar_share,Highest solar share,0.1798,0.1767,max
 2026-11-04,QLD1,max_demand_mw,Highest daily peak demand,8699.3,8475.7,max
 2026-11-04,TAS1,min_price,Lowest price,-991.63,-157.83,min
+2026-11-05,NSW1,min_price,Lowest price,-23.5,-10.5,min
+2026-11-05,NSW1,negative_intervals,Most intervals with a negative price,51.0,34.0,max
+2026-11-05,QLD1,max_demand_mw,Highest daily peak demand,9361.0,8699.3,max
