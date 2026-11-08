@@ -82,3 +82,4 @@ date,region,metric,label,value,previous,kind
 2026-11-06,NEM,solar_share,Highest solar share,0.1684,0.1662,max
 2026-11-06,QLD1,solar_share,Highest solar share,0.1881,0.1798,max
 2026-11-06,QLD1,negative_intervals,Most intervals with a negative price,107.0,104.0,max
+2026-11-07,NSW1,negative_intervals,Most intervals with a negative price,54.0,51.0,max

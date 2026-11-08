@@ -15,19 +15,20 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-11-06 (NEM time)._
+_Updated for 2026-11-07 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $78/MWh | 37% | 501 g/kWh | 1 |
-| QLD1 | $51/MWh | 29% | 602 g/kWh | 107 |
-| VIC1 | $56/MWh | 42% | 624 g/kWh | 79 |
-| SA1 | $16/MWh | 54% | 182 g/kWh | 122 |
-| TAS1 | $59/MWh | 99% | 6 g/kWh | 64 |
-| NEM | $62/MWh | 39% | 536 g/kWh | 21 |
+| NSW1 | $64/MWh | 41% | 480 g/kWh | 54 |
+| QLD1 | $51/MWh | 26% | 630 g/kWh | 92 |
+| VIC1 | $36/MWh | 46% | 605 g/kWh | 136 |
+| SA1 | $52/MWh | 85% | 60 g/kWh | 97 |
+| TAS1 | $41/MWh | 100% | 0 g/kWh | 126 |
+| NEM | $52/MWh | 42% | 524 g/kWh | 71 |
 
 ### Recent records
 
+- **2026-11-07** NSW1: most intervals with a negative price (54 intervals, previous best 51 intervals)
 - **2026-11-06** NEM: highest solar share (16.8%, previous best 16.6%)
 - **2026-11-06** QLD1: most intervals with a negative price (107 intervals, previous best 104 intervals)
 - **2026-11-06** QLD1: highest solar share (18.8%, previous best 18.0%)
@@ -37,7 +38,6 @@ _Updated for 2026-11-06 (NEM time)._
 - **2026-11-04** QLD1: highest daily peak demand (8,699.3 MW, previous best 8,475.7 MW)
 - **2026-11-04** QLD1: highest solar share (18.0%, previous best 17.7%)
 - **2026-11-04** TAS1: lowest price (-991.6 $/MWh, previous best -157.8 $/MWh)
-- **2026-11-01** QLD1: highest solar share (17.7%, previous best 17.0%)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.
