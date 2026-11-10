@@ -15,19 +15,22 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-11-07 (NEM time)._
+_Updated for 2026-11-08 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $64/MWh | 41% | 480 g/kWh | 54 |
-| QLD1 | $51/MWh | 26% | 630 g/kWh | 92 |
-| VIC1 | $36/MWh | 46% | 605 g/kWh | 136 |
-| SA1 | $52/MWh | 85% | 60 g/kWh | 97 |
-| TAS1 | $41/MWh | 100% | 0 g/kWh | 126 |
-| NEM | $52/MWh | 42% | 524 g/kWh | 71 |
+| NSW1 | $48/MWh | 43% | 456 g/kWh | 46 |
+| QLD1 | $39/MWh | 28% | 617 g/kWh | 121 |
+| VIC1 | $30/MWh | 37% | 702 g/kWh | 130 |
+| SA1 | -$14/MWh | 82% | 68 g/kWh | 138 |
+| TAS1 | $32/MWh | 100% | 0 g/kWh | 127 |
+| NEM | $40/MWh | 41% | 532 g/kWh | 116 |
 
 ### Recent records
 
+- **2026-11-08** NEM: most intervals with a negative price (116 intervals, previous best 82 intervals)
+- **2026-11-08** NSW1: highest solar share (25.6%, previous best 25.1%)
+- **2026-11-08** QLD1: most intervals with a negative price (121 intervals, previous best 107 intervals)
 - **2026-11-07** NSW1: most intervals with a negative price (54 intervals, previous best 51 intervals)
 - **2026-11-06** NEM: highest solar share (16.8%, previous best 16.6%)
 - **2026-11-06** QLD1: most intervals with a negative price (107 intervals, previous best 104 intervals)
@@ -35,9 +38,6 @@ _Updated for 2026-11-07 (NEM time)._
 - **2026-11-05** NSW1: lowest price (-23.5 $/MWh, previous best -10.5 $/MWh)
 - **2026-11-05** NSW1: most intervals with a negative price (51 intervals, previous best 34 intervals)
 - **2026-11-05** QLD1: highest daily peak demand (9,361.0 MW, previous best 8,699.3 MW)
-- **2026-11-04** QLD1: highest daily peak demand (8,699.3 MW, previous best 8,475.7 MW)
-- **2026-11-04** QLD1: highest solar share (18.0%, previous best 17.7%)
-- **2026-11-04** TAS1: lowest price (-991.6 $/MWh, previous best -157.8 $/MWh)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.
