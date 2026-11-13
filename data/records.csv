@@ -88,3 +88,4 @@ date,region,metric,label,value,previous,kind
 2026-11-08,QLD1,negative_intervals,Most intervals with a negative price,121.0,107.0,max
 2026-11-09,NSW1,solar_share,Highest solar share,0.2683,0.2561,max
 2026-11-09,SA1,max_price,Highest price,3290.0,3210.98,max
+2026-11-11,TAS1,max_price,Highest price,23200.0,359.12,max
