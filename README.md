@@ -15,19 +15,22 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-11-17 (NEM time)._
+_Updated for 2026-11-18 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $104/MWh | 27% | 583 g/kWh | 0 |
-| QLD1 | $78/MWh | 30% | 590 g/kWh | 0 |
-| VIC1 | $97/MWh | 32% | 744 g/kWh | 5 |
-| SA1 | $75/MWh | 57% | 157 g/kWh | 91 |
-| TAS1 | $97/MWh | 100% | 0 g/kWh | 5 |
-| NEM | $93/MWh | 34% | 582 g/kWh | 0 |
+| NSW1 | $85/MWh | 41% | 491 g/kWh | 9 |
+| QLD1 | $66/MWh | 34% | 560 g/kWh | 9 |
+| VIC1 | $75/MWh | 36% | 716 g/kWh | 14 |
+| SA1 | $77/MWh | 70% | 120 g/kWh | 77 |
+| TAS1 | $75/MWh | 100% | 0 g/kWh | 12 |
+| NEM | $77/MWh | 41% | 535 g/kWh | 11 |
 
 ### Recent records
 
+- **2026-11-18** NEM: highest solar share (17.0%, previous best 16.8%)
+- **2026-11-18** QLD1: lowest emissions intensity (560.4 g/kWh, previous best 586.4 g/kWh)
+- **2026-11-18** QLD1: highest renewable share (34.5%, previous best 32.7%)
 - **2026-11-17** QLD1: highest solar share (19.8%, previous best 18.8%)
 - **2026-11-17** VIC1: highest solar share (13.0%, previous best 12.8%)
 - **2026-11-16** TAS1: highest daily peak demand (1,285.9 MW, previous best 1,281.8 MW)
@@ -35,9 +38,6 @@ _Updated for 2026-11-17 (NEM time)._
 - **2026-11-15** SA1: lowest price (-427.6 $/MWh, previous best -415.0 $/MWh)
 - **2026-11-11** TAS1: highest price (23,200.0 $/MWh, previous best 359.1 $/MWh)
 - **2026-11-09** NSW1: highest solar share (26.8%, previous best 25.6%)
-- **2026-11-09** SA1: highest price (3,290.0 $/MWh, previous best 3,211.0 $/MWh)
-- **2026-11-08** NEM: most intervals with a negative price (116 intervals, previous best 82 intervals)
-- **2026-11-08** NSW1: highest solar share (25.6%, previous best 25.1%)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.

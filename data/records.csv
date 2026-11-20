@@ -94,3 +94,6 @@ date,region,metric,label,value,previous,kind
 2026-11-16,VIC1,solar_share,Highest solar share,0.1283,0.1229,max
 2026-11-17,QLD1,solar_share,Highest solar share,0.1978,0.1881,max
 2026-11-17,VIC1,solar_share,Highest solar share,0.1297,0.1283,max
+2026-11-18,NEM,solar_share,Highest solar share,0.1704,0.1684,max
+2026-11-18,QLD1,renewable_share,Highest renewable share,0.345,0.3266,max
+2026-11-18,QLD1,intensity_g_per_kwh,Lowest emissions intensity,560.4,586.4,min
