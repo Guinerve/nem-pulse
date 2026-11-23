@@ -98,3 +98,4 @@ date,region,metric,label,value,previous,kind
 2026-11-18,QLD1,renewable_share,Highest renewable share,0.345,0.3266,max
 2026-11-18,QLD1,intensity_g_per_kwh,Lowest emissions intensity,560.4,586.4,min
 2026-11-19,VIC1,max_price,Highest price,887.18,406.11,max
+2026-11-21,VIC1,max_price,Highest price,11195.54,887.18,max
