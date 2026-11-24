@@ -15,29 +15,29 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-11-21 (NEM time)._
+_Updated for 2026-11-22 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $109/MWh | 34% | 534 g/kWh | 0 |
-| QLD1 | $98/MWh | 28% | 614 g/kWh | 0 |
-| VIC1 | $141/MWh | 26% | 808 g/kWh | 13 |
-| SA1 | $121/MWh | 44% | 246 g/kWh | 47 |
-| TAS1 | $134/MWh | 98% | 9 g/kWh | 10 |
-| NEM | $117/MWh | 33% | 589 g/kWh | 0 |
+| NSW1 | $76/MWh | 37% | 523 g/kWh | 8 |
+| QLD1 | $51/MWh | 36% | 548 g/kWh | 89 |
+| VIC1 | $50/MWh | 43% | 640 g/kWh | 1 |
+| SA1 | $63/MWh | 87% | 51 g/kWh | 3 |
+| TAS1 | $56/MWh | 100% | 0 g/kWh | 0 |
+| NEM | $62/MWh | 43% | 514 g/kWh | 16 |
 
 ### Recent records
 
+- **2026-11-22** NEM: highest renewable share (43.5%, previous best 43.1%)
+- **2026-11-22** NSW1: highest daily peak demand (9,989.7 MW, previous best 9,920.9 MW)
+- **2026-11-22** QLD1: lowest emissions intensity (548.2 g/kWh, previous best 560.4 g/kWh)
+- **2026-11-22** QLD1: highest renewable share (35.6%, previous best 34.5%)
+- **2026-11-22** QLD1: highest solar share (20.5%, previous best 19.8%)
 - **2026-11-21** VIC1: highest price (11,195.5 $/MWh, previous best 887.2 $/MWh)
 - **2026-11-19** VIC1: highest price (887.2 $/MWh, previous best 406.1 $/MWh)
 - **2026-11-18** NEM: highest solar share (17.0%, previous best 16.8%)
 - **2026-11-18** QLD1: lowest emissions intensity (560.4 g/kWh, previous best 586.4 g/kWh)
 - **2026-11-18** QLD1: highest renewable share (34.5%, previous best 32.7%)
-- **2026-11-17** QLD1: highest solar share (19.8%, previous best 18.8%)
-- **2026-11-17** VIC1: highest solar share (13.0%, previous best 12.8%)
-- **2026-11-16** TAS1: highest daily peak demand (1,285.9 MW, previous best 1,281.8 MW)
-- **2026-11-16** VIC1: highest solar share (12.8%, previous best 12.3%)
-- **2026-11-15** SA1: lowest price (-427.6 $/MWh, previous best -415.0 $/MWh)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.
