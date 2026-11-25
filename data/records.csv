@@ -104,3 +104,9 @@ date,region,metric,label,value,previous,kind
 2026-11-22,QLD1,renewable_share,Highest renewable share,0.3564,0.345,max
 2026-11-22,QLD1,solar_share,Highest solar share,0.2049,0.1978,max
 2026-11-22,QLD1,intensity_g_per_kwh,Lowest emissions intensity,548.2,560.4,min
+2026-11-23,NEM,renewable_share,Highest renewable share,0.438,0.4345,max
+2026-11-23,NEM,wind_share,Highest wind share,0.2718,0.267,max
+2026-11-23,NEM,intensity_g_per_kwh,Lowest emissions intensity,502.3,510.7,min
+2026-11-23,NSW1,max_demand_mw,Highest daily peak demand,10065.1,9989.7,max
+2026-11-23,QLD1,solar_share,Highest solar share,0.2073,0.2049,max
+2026-11-23,TAS1,wind_share,Highest wind share,0.6131,0.5372,max

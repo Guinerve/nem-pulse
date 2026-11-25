@@ -15,29 +15,29 @@ I built it to try the "git scraping" pattern on grid data: the repository is the
 ## Latest
 
 <!-- PULSE:START -->
-_Updated for 2026-11-22 (NEM time)._
+_Updated for 2026-11-23 (NEM time)._
 
 | Region | Avg price | Renewables | Intensity | Negative price intervals |
 |---|---:|---:|---:|---:|
-| NSW1 | $76/MWh | 37% | 523 g/kWh | 8 |
-| QLD1 | $51/MWh | 36% | 548 g/kWh | 89 |
-| VIC1 | $50/MWh | 43% | 640 g/kWh | 1 |
-| SA1 | $63/MWh | 87% | 51 g/kWh | 3 |
-| TAS1 | $56/MWh | 100% | 0 g/kWh | 0 |
-| NEM | $62/MWh | 43% | 514 g/kWh | 16 |
+| NSW1 | $84/MWh | 34% | 544 g/kWh | 16 |
+| QLD1 | $56/MWh | 34% | 555 g/kWh | 33 |
+| VIC1 | $9/MWh | 54% | 535 g/kWh | 120 |
+| SA1 | $18/MWh | 83% | 72 g/kWh | 126 |
+| TAS1 | $28/MWh | 100% | 0 g/kWh | 107 |
+| NEM | $56/MWh | 44% | 502 g/kWh | 20 |
 
 ### Recent records
 
+- **2026-11-23** NEM: lowest emissions intensity (502.3 g/kWh, previous best 510.7 g/kWh)
+- **2026-11-23** NEM: highest renewable share (43.8%, previous best 43.5%)
+- **2026-11-23** NEM: highest wind share (27.2%, previous best 26.7%)
+- **2026-11-23** NSW1: highest daily peak demand (10,065.1 MW, previous best 9,989.7 MW)
+- **2026-11-23** QLD1: highest solar share (20.7%, previous best 20.5%)
+- **2026-11-23** TAS1: highest wind share (61.3%, previous best 53.7%)
 - **2026-11-22** NEM: highest renewable share (43.5%, previous best 43.1%)
 - **2026-11-22** NSW1: highest daily peak demand (9,989.7 MW, previous best 9,920.9 MW)
 - **2026-11-22** QLD1: lowest emissions intensity (548.2 g/kWh, previous best 560.4 g/kWh)
 - **2026-11-22** QLD1: highest renewable share (35.6%, previous best 34.5%)
-- **2026-11-22** QLD1: highest solar share (20.5%, previous best 19.8%)
-- **2026-11-21** VIC1: highest price (11,195.5 $/MWh, previous best 887.2 $/MWh)
-- **2026-11-19** VIC1: highest price (887.2 $/MWh, previous best 406.1 $/MWh)
-- **2026-11-18** NEM: highest solar share (17.0%, previous best 16.8%)
-- **2026-11-18** QLD1: lowest emissions intensity (560.4 g/kWh, previous best 586.4 g/kWh)
-- **2026-11-18** QLD1: highest renewable share (34.5%, previous best 32.7%)
 <!-- PULSE:END -->
 
 The AEMO daily archive is about two days behind the grid, so the newest day here is two days old. I found this when the first scheduled run asked for "yesterday" and got a 404.
