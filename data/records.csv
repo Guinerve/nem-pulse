@@ -110,3 +110,4 @@ date,region,metric,label,value,previous,kind
 2026-11-23,NSW1,max_demand_mw,Highest daily peak demand,10065.1,9989.7,max
 2026-11-23,QLD1,solar_share,Highest solar share,0.2073,0.2049,max
 2026-11-23,TAS1,wind_share,Highest wind share,0.6131,0.5372,max
+2026-11-25,VIC1,solar_share,Highest solar share,0.1313,0.1297,max
