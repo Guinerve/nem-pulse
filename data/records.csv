@@ -111,3 +111,4 @@ date,region,metric,label,value,previous,kind
 2026-11-23,QLD1,solar_share,Highest solar share,0.2073,0.2049,max
 2026-11-23,TAS1,wind_share,Highest wind share,0.6131,0.5372,max
 2026-11-25,VIC1,solar_share,Highest solar share,0.1313,0.1297,max
+2026-11-26,QLD1,intensity_g_per_kwh,Lowest emissions intensity,547.9,548.2,min
